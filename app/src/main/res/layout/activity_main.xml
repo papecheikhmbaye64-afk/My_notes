@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_light"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/mainTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mes Notes"
+            android:textStyle="bold"
+            android:textSize="32sp"
+            android:textColor="@color/text_light_main"/>
+
+        <ImageView
+            android:id="@+id/btnToggleTheme"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_dark_mode"
+            android:contentDescription="Changer thème"
+            android:clickable="true"
+            android:focusable="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/headerLayout"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="12dp">
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="0dp"
+            android:layout_height="46dp"
+            android:layout_weight="1"
+            android:hint="Rechercher une note..."
+            android:background="@drawable/search_rounded_bg"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="12dp"
+            android:drawableStart="@android:drawable/ic_menu_search"
+            android:drawablePadding="8dp"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/btnFilterFavorites"
+            android:layout_width="wrap_content"
+            android:layout_height="46dp"
+            android:layout_marginStart="8dp"
+            android:text="★"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/black"
+            android:background="@drawable/btn_pill_white"
+            app:cornerRadius="24dp"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/optionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchContainer"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:id="@+id/notesCountTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="0 notes • 0 favorites"
+            android:textStyle="bold"
+            android:textColor="@color/note_grey"
+            android:textSize="14sp"/>
+
+        <Button
+            android:id="@+id/btnSort"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:layout_alignParentEnd="true"
+            android:text="Trier par ▾"
+            android:textSize="12sp"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/note_grey"
+            app:cornerRadius="16dp"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/emptyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Aucune notes"
+        android:textSize="18sp"
+        android:textColor="@color/note_grey"
+        android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewNotes"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/optionsContainer"
+        android:paddingBottom="88dp"
+        android:clipToPadding="false"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/colorPaletteLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/fabAdd"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <View android:id="@+id/colorGris" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_grey"/>
+        <View android:id="@+id/colorVert" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_green"/>
+        <View android:id="@+id/colorRouge" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_red"/>
+        <View android:id="@+id/colorBleu" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_blue"/>
+        <View android:id="@+id/colorJaune" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_yellow"/>
+        <View android:id="@+id/colorOrange" android:layout_width="38dp" android:layout_height="38dp" android:layout_margin="4dp" android:background="@android:drawable/presence_invisible" android:backgroundTint="@color/note_orange"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/black"
+        app:tint="@color/white"
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:elevation="4dp"/>
+</RelativeLayout>
